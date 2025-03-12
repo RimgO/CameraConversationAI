@@ -1,3 +1,6 @@
 [submodule "aituber-kit"]
     path = aituber-kit
     url = https://github.com/RimgO/aituber-kit
+[submodule "angular-face-api-age-detection"]
+    path = angular-face-api-age-detection
+    url = https://github.com/RimgO/angular-face-api-age-detection
