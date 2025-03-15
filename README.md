@@ -11,14 +11,14 @@ Difyを使う場合のみカメラ前の人物に応じて対話内容が変わ�
 ### 対話フロー（Difyアプリ）
 
 DSLファイル（[Dify_App.dsl](https://github.com/RimgO/CameraConversationAI/blob/main/Dify_APP.dsl)）をインポートしてアプリ（対話AI）を作成
-OpenAI等のAPIキーを設定
+Difyアプリの内部でOpenAI等のAPIキーを設定
 Difyアプリを公開しAPIKeyを発行
 
 ### 人物認識アプリ（angular-face-api-age-detection）
 
 [angular-face-api-age-detection](https://github.com/RimgO/angular-face-api-age-detection)をgit clone
 npm install axios --save
-npm i && npm startで起動
+npm i && npm startでアプリを起動
 ブラウザ(Chrome）でlocalhost:4200にアクセス
 ブラウザのカメラ,マイクのアクセスを許可する
 もう１つターミナルを起動し、以下を実行
