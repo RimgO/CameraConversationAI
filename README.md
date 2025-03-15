@@ -10,7 +10,7 @@ Difyを使う場合のみカメラ前の人物に応じて対話内容が変わ�
 
 ### 対話フロー（Difyアプリ）
 
-DSLファイルをインポートしてアプリを作成
+DSLファイル（[Dify_App.dsl](https://github.com/RimgO/CameraConversationAI/blob/main/Dify_APP.dsl)）をインポートしてアプリ（対話AI）を作成
 OpenAI等のAPIキーを設定
 Difyアプリを公開しAPIKeyを発行
 
