@@ -85,18 +85,6 @@ workflow:
       zIndex: 0
     - data:
         isInIteration: false
-        sourceType: parameter-extractor
-        targetType: assigner
-      id: 1740358403588-source-1740358741648-target
-      selected: false
-      source: '1740358403588'
-      sourceHandle: source
-      target: '1740358741648'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
         sourceType: llm
         targetType: parameter-extractor
       id: 17403744180120-source-17403755743110-target
@@ -240,6 +228,39 @@ workflow:
       targetHandle: target
       type: custom
       zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: if-else
+      id: 1740358403588-source-1742088731089-target
+      source: '1740358403588'
+      sourceHandle: source
+      target: '1742088731089'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1742088731089-false-answer-target
+      source: '1742088731089'
+      sourceHandle: 'false'
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: assigner
+      id: 1742088731089-true-1740358741648-target
+      source: '1742088731089'
+      sourceHandle: 'true'
+      target: '1740358741648'
+      targetHandle: target
+      type: custom
+      zIndex: 0
     nodes:
     - data:
         desc: ''
@@ -357,10 +378,10 @@ workflow:
       height: 102
       id: answer
       position:
-        x: 2323.0212304588235
+        x: 2674.435963604671
         y: -218.40298794272275
       positionAbsolute:
-        x: 2323.0212304588235
+        x: 2674.435963604671
         y: -218.40298794272275
       selected: false
       sourcePosition: right
@@ -423,11 +444,11 @@ workflow:
       height: 87
       id: '1740358741648'
       position:
-        x: 2002.4170828459482
-        y: -209.62782645619183
+        x: 2321.875679605151
+        y: -381.6965996634427
       positionAbsolute:
-        x: 2002.4170828459482
-        y: -209.62782645619183
+        x: 2321.875679605151
+        y: -381.6965996634427
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -713,11 +734,11 @@ workflow:
       height: 87
       id: '17406144124160'
       position:
-        x: 768.9507259698485
-        y: -511.51235052828775
+        x: 665.4437351157944
+        y: -559.2848078455436
       positionAbsolute:
-        x: 768.9507259698485
-        y: -511.51235052828775
+        x: 665.4437351157944
+        y: -559.2848078455436
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -767,6 +788,11 @@ workflow:
             相手と楽しく雑談すること
 
 
+            【ルール】
+
+            「ユーザーがいらっしゃいました。」という入力があった場合は、「また会いましたね！」のような会話を挟んで会話を続けてください。
+
+
             【相手の発言】
 
             {{#sys.query#}}'
@@ -784,7 +810,7 @@ workflow:
       positionAbsolute:
         x: 1317.4856017603902
         y: 764.5526184730518
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -809,7 +835,37 @@ workflow:
       targetPosition: left
       type: custom
       width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not contains
+            id: 91536d6b-f85b-4162-a9f8-ff08c22a126c
+            value: きぬえもん
+            varType: string
+            variable_selector:
+            - '1740358403588'
+            - target_name
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: true
+        title: IF/ELSE 4
+        type: if-else
+      height: 125
+      id: '1742088731089'
+      position:
+        x: 1964.8312005422586
+        y: -228.93844850413672
+      positionAbsolute:
+        x: 1964.8312005422586
+        y: -228.93844850413672
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
     viewport:
-      x: -9.99117927872362
-      y: 326.22324900516674
-      zoom: 0.4103841410988224
+      x: -726.2552054567784
+      y: -45.626126732942566
+      zoom: 0.6319235528565342
