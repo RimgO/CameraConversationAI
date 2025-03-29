@@ -8,6 +8,25 @@ Difyを使う場合のみカメラ前の人物に応じて対話内容が変わ�
 
 ## Installation
 
+### コンポーネントごとの要求事項
+
+Dify AI: 対話AIのバックエンド
+最小要件: 2 CPU cores, 4GB RAM
+推奨: 8GB RAM以上
+
+angular-face-api-age-detection: カメラによる人物認識
+WebGLとWebAssemblyをサポートする環境が必要
+比較的強力なCPUとGPUが必要
+
+aituber-kit: メインインターフェース
+Node.js v20以上
+npm v10以上
+
+Style-Bert-VITS2: 音声合成
+CPU動作可能だが、GPUでのパフォーマンスが推奨
+推奨: 16GB VRAM (小規模モデル)、24GB VRAM (大規模モデル)
+
+
 ### 対話フロー（Difyアプリ）
 
 DSLファイル（[Dify_App.dsl](https://github.com/RimgO/CameraConversationAI/blob/main/Dify_APP.dsl)）をインポートしてアプリ（対話AI）を作成
