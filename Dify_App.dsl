@@ -5,8 +5,13 @@ app:
   mode: advanced-chat
   name: 対話AI
   use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.22@fa668d0ec3b434270453ede311196acaad0531ad9e3d5561cd622e6508cd3254
 kind: app
-version: 0.1.5
+version: 0.2.0
 workflow:
   conversation_variables:
   - description: 相手の趣味
@@ -143,17 +148,6 @@ workflow:
     - data:
         isInIteration: false
         sourceType: if-else
-        targetType: llm
-      id: 17406126131860-true-llm-target
-      source: '17406126131860'
-      sourceHandle: 'true'
-      target: llm
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        sourceType: if-else
         targetType: if-else
       id: 17406126131860-false-17406098212230-target
       source: '17406126131860'
@@ -192,17 +186,6 @@ workflow:
       source: '17406144124160'
       sourceHandle: source
       target: '17406126131860'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        sourceType: start
-        targetType: if-else
-      id: 1740352142270-source-17406143349720-target
-      source: '1740352142270'
-      sourceHandle: source
-      target: '17406143349720'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -261,6 +244,51 @@ workflow:
       targetHandle: target
       type: custom
       zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 17406126131860-true-1747175159778-target
+      source: '17406126131860'
+      sourceHandle: 'true'
+      target: '1747175159778'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: llm
+      id: 1747175159778-source-llm-target
+      source: '1747175159778'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: 1740352142270-source-1747871287734-target
+      source: '1740352142270'
+      sourceHandle: source
+      target: '1747871287734'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: 1747871287734-source-17406143349720-target
+      source: '1747871287734'
+      sourceHandle: source
+      target: '17406143349720'
+      targetHandle: target
+      type: custom
+      zIndex: 0
     nodes:
     - data:
         desc: ''
@@ -280,7 +308,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         context:
           enabled: false
@@ -295,11 +323,10 @@ workflow:
             enabled: false
             size: 10
         model:
-          completion_params:
-            temperature: 0.7
+          completion_params: {}
           mode: chat
-          name: gpt-4o-mini
-          provider: openai
+          name: gpt-4.1-mini-2025-04-14
+          provider: langgenius/openai/openai
         prompt_template:
         - id: 09532857-7c22-4b3c-99ce-fa955507b2fc
           role: system
@@ -309,7 +336,7 @@ workflow:
 
             自称：「ぼく」
 
-            相手への呼びかけ：「あんたぁ」
+            相手への呼びかけ：「あなた」
 
             性格：楽観的、好奇心旺盛、流行に敏感、時々鋭い洞察を示す
 
@@ -324,6 +351,10 @@ workflow:
             【対話展開ガイド】
 
             初期アプローチ
+
+            相手の性別：{{#1747175159778.gender#}}
+
+            相手の推定年齢：{{#1747175159778.gender#}}
 
             相手の性別・年代が分かる場合：年代別トピック活用
 
@@ -355,19 +386,19 @@ workflow:
         variables: []
         vision:
           enabled: false
-      height: 97
+      height: 89
       id: llm
       position:
-        x: 1291.089976928364
-        y: -238.0462044475875
+        x: 1334.3324445256742
+        y: -228.93844850413672
       positionAbsolute:
-        x: 1291.089976928364
-        y: -238.0462044475875
+        x: 1334.3324445256742
+        y: -228.93844850413672
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         answer: '{{#llm.text#}}'
         desc: ''
@@ -375,7 +406,7 @@ workflow:
         title: 回答
         type: answer
         variables: []
-      height: 102
+      height: 103
       id: answer
       position:
         x: 2674.435963604671
@@ -387,7 +418,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         desc: ''
         instruction: ''
@@ -395,8 +426,8 @@ workflow:
           completion_params:
             temperature: 0.7
           mode: chat
-          name: gpt-4o-mini
-          provider: openai
+          name: gpt-4.1-mini-2025-04-14
+          provider: langgenius/openai/openai
         parameters:
         - description: 相手の名前
           name: target_name
@@ -412,19 +443,19 @@ workflow:
         variables: []
         vision:
           enabled: false
-      height: 97
+      height: 89
       id: '1740358403588'
       position:
-        x: 1632.29180201986
-        y: -218.40298794272275
+        x: 1645.6628726901736
+        y: -181.98827838709317
       positionAbsolute:
-        x: 1632.29180201986
-        y: -218.40298794272275
+        x: 1645.6628726901736
+        y: -181.98827838709317
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         desc: ''
         items:
@@ -453,7 +484,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         context:
           enabled: true
@@ -470,15 +501,19 @@ workflow:
             enabled: false
             size: 10
         model:
-          completion_params:
-            temperature: 0.7
+          completion_params: {}
           mode: chat
-          name: gpt-4o-mini
-          provider: openai
+          name: gpt-4.1-nano-2025-04-14
+          provider: langgenius/openai/openai
         prompt_template:
         - id: 09532857-7c22-4b3c-99ce-fa955507b2fc
           role: system
           text: 'あなたは「きぬえもん」というChatbotとしてロールプレイを行います。
+
+            【システム設定】
+
+            日付：{{#1747871287734.text#}}
+
 
             【キャラクター設定】
 
@@ -526,7 +561,7 @@ workflow:
         variables: []
         vision:
           enabled: false
-      height: 97
+      height: 89
       id: '17403744180120'
       position:
         x: 1299.4563031998362
@@ -534,11 +569,11 @@ workflow:
       positionAbsolute:
         x: 1299.4563031998362
         y: 249.71605606428312
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         answer: '{{#17403744180120.text#}}'
         desc: ''
@@ -546,7 +581,7 @@ workflow:
         title: 回答_Lv2
         type: answer
         variables: []
-      height: 102
+      height: 103
       id: '17403744839660'
       position:
         x: 1990.5743406715515
@@ -558,7 +593,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         desc: ''
         instruction: ''
@@ -566,8 +601,8 @@ workflow:
           completion_params:
             temperature: 0.7
           mode: chat
-          name: gpt-4o-mini
-          provider: openai
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
         parameters:
         - description: 相手の趣味
           name: target_hobby
@@ -583,7 +618,7 @@ workflow:
         variables: []
         vision:
           enabled: false
-      height: 97
+      height: 89
       id: '17403755743110'
       position:
         x: 1645.6628726901736
@@ -595,7 +630,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         desc: ''
         items:
@@ -624,7 +659,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         cases:
         - case_id: 'true'
@@ -654,7 +689,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         cases:
         - case_id: 'true'
@@ -675,16 +710,16 @@ workflow:
       height: 125
       id: '17406126131860'
       position:
-        x: 813.6924084777919
-        y: -238.0462044475875
+        x: 776.2443794180364
+        y: -320.96684022276077
       positionAbsolute:
-        x: 813.6924084777919
-        y: -238.0462044475875
+        x: 776.2443794180364
+        y: -320.96684022276077
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         cases:
         - case_id: 'true'
@@ -706,15 +741,15 @@ workflow:
       id: '17406143349720'
       position:
         x: 402.74560827166897
-        y: -348.25365741856297
+        y: -429.83686358445925
       positionAbsolute:
         x: 402.74560827166897
-        y: -348.25365741856297
+        y: -429.83686358445925
       selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         desc: ''
         items:
@@ -743,7 +778,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         context:
           enabled: true
@@ -760,11 +795,10 @@ workflow:
             enabled: false
             size: 10
         model:
-          completion_params:
-            temperature: 0.7
+          completion_params: {}
           mode: chat
-          name: gpt-4o-mini
-          provider: openai
+          name: gpt-4.1-2025-04-14
+          provider: langgenius/openai/openai
         prompt_template:
         - id: 09532857-7c22-4b3c-99ce-fa955507b2fc
           role: system
@@ -827,13 +861,13 @@ workflow:
             【相手の発言】
 
             {{#sys.query#}}'
-        selected: true
+        selected: false
         title: LLM_Lv3
         type: llm
         variables: []
         vision:
           enabled: false
-      height: 97
+      height: 89
       id: '17414183830110'
       position:
         x: 1317.4856017603902
@@ -841,11 +875,11 @@ workflow:
       positionAbsolute:
         x: 1317.4856017603902
         y: 764.5526184730518
-      selected: true
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         answer: '{{#17414183830110.text#}}'
         desc: ''
@@ -853,7 +887,7 @@ workflow:
         title: 回答_Lv3
         type: answer
         variables: []
-      height: 102
+      height: 103
       id: '17414184010780'
       position:
         x: 1990.5743406715515
@@ -865,7 +899,7 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
     - data:
         cases:
         - case_id: 'true'
@@ -895,8 +929,241 @@ workflow:
       sourcePosition: right
       targetPosition: left
       type: custom
-      width: 244
+      width: 243
+    - data:
+        desc: ''
+        instruction: '{{#sys.user_id#}}の末尾がfemaleなら"female"、それ以外なら”male”を出力変数genderに代入してください
+
+
+          {{#sys.user_id#}}の"_"で区切られた２桁の数値を出力変数ageに代入してください'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-nano
+          provider: langgenius/openai/openai
+        parameters:
+        - description: ユーザーの推定性別
+          name: gender
+          required: false
+          type: string
+        - description: ユーザーの推定年齢
+          name: age
+          required: false
+          type: number
+        query:
+        - sys
+        - user_id
+        reasoning_mode: prompt
+        selected: false
+        title: パラメータ抽出 3
+        type: parameter-extractor
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1747175159778'
+      position:
+        x: 1075.856223447985
+        y: -329.1952609620141
+      positionAbsolute:
+        x: 1075.856223447985
+        y: -329.1952609620141
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: Current Time
+        tool_configurations:
+          format: '%Y-%m-%d %H:%M:%S'
+          timezone: Asia/Tokyo
+        tool_description: A tool for getting the current time.
+        tool_label: Current Time
+        tool_name: current_time
+        tool_parameters: {}
+        type: tool
+      height: 115
+      id: '1747871287734'
+      position:
+        x: 402.74560827166897
+        y: -184.25365741856297
+      positionAbsolute:
+        x: 402.74560827166897
+        y: -184.25365741856297
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
     viewport:
-      x: -616.5440092160595
-      y: 121.16644183635412
-      zoom: 0.5672103757574192
+      x: -1215.0589663288029
+      y: -139.96488628242065
+      zoom: 0.7477029019423296
